@@ -1,0 +1,104 @@
+<!-- INHERITING CONTENT FROM EXISTING FILE BASE.HTML -->
+{% extends "base.html"%}
+
+<!-- PUTTING DATA IN BLOCK(S) PREDEFINED IN BASE.HTML -->
+{% block title%}
+Upload Page
+ <!-- CLOSING THE BLOCK (MUST BE DONE!!!) -->
+{% endblock %}
+
+<!-- PUTTING DATA IN BLOCK(S) PREDEFINED IN BASE.HTML -->
+{%block main_body%}
+<style>
+
+
+.drop-container {
+  position: center;
+  display: flex;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px dashed #555;
+  color: #444;
+  cursor: pointer;
+  transition: background .2s ease-in-out, border .2s ease-in-out;
+}
+
+.drop-container:hover {
+  background: #eee;
+  border-color: #111;
+}
+
+.drop-container:hover .drop-title {
+  color: #222;
+}
+
+.drop-title {
+  color: #444;
+  font-size: 20px;
+  font-weight: bold;
+
+  text-align: center;
+  transition: color .2s ease-in-out;
+}
+
+input[type=file] {
+  width: 350px;
+  max-width: 100%;
+  color: #444;
+  padding: 5px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #555;
+}
+
+input[type=file]::file-selector-button {
+  margin-right: 20px;
+  border: none;
+  background: #084cdf;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background .2s ease-in-out;
+}
+
+input[type=file]::file-selector-button:hover {
+  background: #0d45a5;
+}
+
+</style>
+<main id="main">
+
+  <!-- ======= Breadcrumbs Section ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>File Upload Page</h2>
+        <ol>
+          <li><a href="{{ url_for('index') }}">Home</a></li>
+          <li>File Upload Page</li>
+
+        </ol>
+      </div>
+
+    </div>
+  </section><!-- End Breadcrumbs Section -->
+  <form action="{{ url_for('upload_file')}}" method="POST" enctype="multipart/form-data">
+    <label for="images" class="drop-container">
+      <span class="drop-title">Drop files here</span>
+
+      <input type="file" name="file_to_save" id="images" accept="file" required>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </label>
+  </form>
+</main><!-- End #main -->
+
+<!-- CLOSING THE BLOCK (MUST BE DONE!!!) -->
+{% endblock %}
